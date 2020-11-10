@@ -1,0 +1,41 @@
+#main-header {
+    background-color: #FFB7A6;
+    font-size: 20px;
+    padding-bottom: 70px;
+}
+
+.container{
+    overflow: hidden;
+}
+
+.container2{
+    overflow: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+#leftSide{
+    float: left;
+    width: auto;
+    background: #F587F3;
+    height: 400px;
+}
+
+#rightSide{
+    float: right;
+    width: 100px;
+    background: #B2FFF8;
+    height: 400px;
+}
+
+#main-content {
+    margin: 0 auto;
+    background: #FFF684;
+    height: 400px;
+}
+
+#footer {
+    width: auto;
+    background: #C379FF;
+    padding: 5px;
+}
