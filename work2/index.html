@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class ="main-container">
+    <header id="main-header">
+        <div class="container">
+            <h1>CONTACT US</h1>
+            <p>We are very responsive!
+                Feel free to send us a message</p>
+        </div>
+    </header>
+    <div>
+        <form class="my-form">
+            <div class="form-group">
+                <label>Name: </label>
+                <input type="text" id="name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label>Email: </label>
+                <input type="text" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label>Phone Number: </label>
+                <input type="text" id="phone" minlength="9" maxlength="9" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label>Message: </label>
+                <textarea id="message" placeholder="Description of the problem"></textarea>
+            </div>
+            <input class="button" type="submit" value="Submit"/>
+        </form>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+
+</html>
