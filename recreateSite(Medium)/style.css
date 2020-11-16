@@ -1,0 +1,188 @@
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+  text-transform: uppercase;
+}
+
+.view {
+  background: url("https://generacionxbox.com/wp-content/uploads/2019/11/asterix_and_obelix_xxl3_the_crystal_menhir.jpg");
+  background-size: cover;
+}
+
+.mask {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.navbar {
+  z-index: 1;
+}
+
+html,
+body,
+header,
+.view {
+height: 100%;
+}
+
+#introTitle{
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+#contact {
+  background-color: darkgrey;
+  scroll-margin-top: 5vh;
+  height: 80vh;
+}
+
+#collection{
+  height: auto;
+  scroll-margin-top: 5vh;
+  
+}
+
+h3 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1{
+  text-transform:uppercase;
+}
+
+hr {
+  border: 1px solid;
+  width: 5%;
+}
+
+#containerContact {
+  background-color: white;
+  width: 700px;
+}
+
+#containerAboutUs {
+  background-color: white;
+  width: 700px;
+}
+
+section {
+  height: 100vh;
+}
+
+.wrapper {
+  display: grid;
+  padding: 15px;
+  column-gap: 1px;
+  row-gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 3fr;
+  grid-template-areas: 
+  "A A B B"
+  "C C D D"
+  "E E E E";
+  
+  
+}
+
+.firstNameGrid {
+grid-area: A;
+border: 1px solid;
+}
+
+.lastNameGrid {
+  grid-area: B;
+  border: 1px solid;
+}
+
+.emailGrid {
+  grid-area: C;
+  border: 1px solid;
+}
+
+.orderGrid {
+  grid-area: D;
+  border: 1px solid;
+}
+
+.messageGrid {
+  grid-area: E;
+  border: 1px solid;
+}
+
+.contentGrid {
+ border: none;
+ width: 100%;
+ height: 100%;
+ outline: none;
+}
+
+footer {
+  display: flex;
+  font-size: small;
+  height: 15vh;
+  align-items: center;
+  justify-content: center;
+}
+
+::-webkit-input-placeholder{
+  padding-left: 5px;
+  padding-top: 5px;
+  font-family: "Courier New", Courier, monospace;
+
+}
+
+.submitAndRecatch{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mybutton {
+  background-color: darkcyan;
+  color: white;
+  padding-left:60px;
+  padding-right:60px;
+  
+}
+
+.mybutton:hover{
+  background-color: darkslategrey;
+	color:#fff;
+}
+
+#aboutUs{
+  display: flex;
+  align-items: center;
+  background: url("https://media.giphy.com/media/lQ78V6fgKpTXHvh9PG/giphy.gif");
+  background-size: repeat;
+}
+
+.textAbout{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.card {
+  height: 100%;
+  padding: 5px;
+}
+
+.buttonCard{
+  border: 1px;
+}
+
+.buttonCard:hover{
+  border: 5px;
+}
+
+#collectionHeader{
+  color: white;
+  background-color: rgba(122, 1, 1, 0.8);
+ 
+}
+

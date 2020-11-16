@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ivilion Drapery Hardware</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark p-3">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#imageheader">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#collection">Collection</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#aboutUs">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="imageheader" class="view intro-2">
+      <div class="full-bg-img">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="white-text text-center">
+              <h1 id="introTitle">Obelix</h1>
+              <p>Let's Play Together</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <section id="collection" class="pb-5">
+    <div class="container">
+      <div id="collectionHeader" class=" container mt-5 mb-5 py-3 text-center">
+        <h3 class="pt-5">SHOP OUR COLLECTION</h3>
+        <hr class="my-4">
+        <h5>Get the ultimate obelix cards</h5>
+      </div>
+      <div id="containerCard" class="row"></div>
+    </div>
+  </section>
+
+  <section id="aboutUs" class="py-4">
+    <div id="containerAboutUs" class="container text-center py-5">
+      <h1 class="pt-5">About us</h1>
+      <hr class="my-4">
+      <div class="textAbout">
+        <p>We are a reputed firm engaged in retailing and distributing a wide range of curtain rods and window hardware.
+
+        <p>With our valuable experience of 15 years in the domain, our products are known for their superior durability,
+          easy installation and perfect finish, which are suitable to be installed at commercial and domestic
+          establishments. We manufacture these products using premium grade raw material as per the set industrial
+          standards. Our range of curtain rods enhances
+          the beauty of interiors of households, hotels, offices, showroom, and houses.</p>
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="info" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 mb-3">
+          <div class="card">
+            <img class="card-img-top" src="https://i.pinimg.com/736x/9e/50/65/9e506513a7dd862373cac0021308b632.jpg"
+              alt="Card image cap">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Sonic</h5>
+              <p class="card-text font-weight-light">Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+          <div class="card">
+            <img class="card-img-top"
+              src="https://image.shutterstock.com/image-vector/astronaut-space-icon-vector-illustration-600w-679206631.jpg"
+              alt="Card image cap">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">CryptoPilot</h5>
+              <p class="card-text font-weight-light">Crypto Einstein</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+          <div class="card">
+            <img class="card-img-top" src="https://i.pinimg.com/736x/af/78/a7/af78a7177ad66d60f84f54d1704fcd3c.jpg"
+              alt="Card image cap">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Rasti</h5>
+              <p class="card-text font-weight-light ">Developer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+
+  <section id="contact" class="py-5">
+    <div id="containerContact" class="container text-center">
+      <h3 class="pt-5">Contact us</h3>
+      <h5>obelix@gmail.com</h5>
+      <hr class="my-4">
+
+      <div class="wrapper">
+        <!-- Modal content -->
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" ria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <p id="messageModal"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="firstNameGrid">
+          <input class="contentGrid" type="text" id="firstName" placeholder="FirstName">
+        </div>
+        <div class="lastNameGrid">
+          <input class="contentGrid" type="text" id="lastName" placeholder="Last Name">
+        </div>
+        <div class="emailGrid">
+          <input class="contentGrid" type="text" id="email" placeholder="Email">
+        </div>
+        <div class="orderGrid">
+          <input class="contentGrid" type="text" id="order" placeholder="Order#">
+        </div>
+        <div class="messageGrid">
+          <textarea class="contentGrid" name="message" rows="8" id="textArea"
+            placeholder="Type your message here..."></textarea>
+        </div>
+      </div>
+
+      <div class="container pb-5">
+        <div class="submitAndRecatch">
+          <div class="g-recaptcha" id="rcaptcha" data-sitekey="6LczsOMZAAAAAFnz5Id4HUkNgacH3L-3ujughe9-"></div>
+          <button id="submitButton" type="button" class="btn mybutton" data-toggle="modal" data-target="#myModal">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark">
+    <div class="text-white">
+      2020 Created By Rastilho.
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+</body>
+
+</html>

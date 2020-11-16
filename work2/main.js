@@ -8,9 +8,6 @@ const msg = document.querySelector('#message');
 
 myForm.addEventListener('submit', onSubmit);
 
-function checkLength(el){
-
-}
 
 function onSubmit(e) {
     e.preventDefault();
