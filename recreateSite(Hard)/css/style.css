@@ -207,8 +207,10 @@ footer {
 .customContent{
   flex:1;
   height: 100%;
- 
+  align-content: center;
+  justify-content: center;
 }
+
 
 
 
