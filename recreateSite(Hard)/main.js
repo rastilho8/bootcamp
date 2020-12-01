@@ -12,9 +12,15 @@ const html = document.querySelector('html');
 function loadContent(path) {
   var xmlhttp = new XMLHttpRequest();
   var pathToFile = `${path}`;
+  let returnResponse = null;
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      returnResponse = xmlhttp.responseText;
+    }
+  }
   xmlhttp.open("GET", pathToFile, false);
   xmlhttp.send();
-  return xmlhttp.responseText;
+  return returnResponse;
 }
 
 /*--------------------------------------------------------------
@@ -118,15 +124,13 @@ function changeToHomeOrPosts(e) {
       addButton.setAttribute("id", "buttonPosts");
     }
 
-    var request = new XMLHttpRequest();
+
     let i = 1;
     //populate array with the posts available
     for (i = 1; i <= 6; i++) {
-      request.open("GET", "posts/post" + i + ".json", false);
-      request.send(null);
-      post_object.push(JSON.parse(request.responseText));
+      post_object.push(JSON.parse(loadContent("posts/post" + i + ".json")));
     }
-
+    console.log(post_object);
     post_object.reverse();
 
     /*--------------------------------------------------------------
@@ -315,7 +319,7 @@ function changeToHomeOrPosts(e) {
               if (position - 1 > 0) {
                 divButton.appendChild(addButtonOlder);
                 divButton.appendChild(addButtonNew);
-              } else if (position -1 <= 0) {
+              } else if (position - 1 <= 0) {
                 divButton.appendChild(addButtonOlder);
               }
               changeContent.appendChild(divButton);
