@@ -7,22 +7,22 @@ export const PlayerProvider = (props) => {
     {
       id: "1",
       name: "Player1",
-      color: "#fff",
+      color: "imgDiv-default",
     },
     {
       id: "2",
       name: "Player2",
-      color: "#fff",
+      color: "imgDiv-default",
     },
     {
       id: "3",
       name: "Player3",
-      color: "#fff",
+      color: "imgDiv-default",
     },
     {
       id: "4",
       name: "Player4",
-      color: "#fff",
+      color: "imgDiv-default",
     },
   ]);
 

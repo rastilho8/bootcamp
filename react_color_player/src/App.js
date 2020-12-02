@@ -1,8 +1,8 @@
 import "./App.css";
-import Players from "./components/Players";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import { PlayerProvider } from "./components/PlayersContext";
+import Players from "./components/Players/Players";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import { PlayerProvider } from "./Context/PlayersContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
