@@ -2,34 +2,70 @@ import React, { useState, useContext } from "react";
 import Player from "./Player";
 import { PlayersContext } from "../../Context/PlayersContext";
 import { Link } from "react-router-dom";
-import "./players.css";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/styles";
+import BackspaceIcon from "@material-ui/icons/Backspace";
+import Grid from "@material-ui/core/Grid";
+import { motion } from "framer-motion";
+
+const useStyle = makeStyles({
+  root: {
+    color: "green",
+    padding: " 15px 20px",
+    border: "5",
+    borderColor: "green",
+    fontSize: "20px",
+    fontWeight: "bold",
+    marginTop: "20px",
+    "&:hover": {
+      opacity: "0.8",
+    },
+    "&:focus": {
+      outline: "none",
+    },
+  },
+});
+
+function StyleButton() {
+  const classes = useStyle();
+  return (
+    <Button
+      startIcon={<BackspaceIcon />}
+      variant="contained"
+      size="large"
+      className={classes.root}
+    >
+      Go To Game Lobby
+    </Button>
+  );
+}
 
 const Players = () => {
   const [players, setPlayers] = useContext(PlayersContext);
 
   const [getColor, setColor] = useState([
     {
-      value: "imgDiv-red",
+      value: "red",
       label: "red",
       isDisabled: false,
     },
     {
-      value: "imgDiv-blue",
+      value: "blue",
       label: "blue",
       isDisabled: false,
     },
     {
-      value: "imgDiv-green",
+      value: "green",
       label: "green",
       isDisabled: false,
     },
     {
-      value: "imgDiv-purple",
+      value: "purple",
       label: "purple",
       isDisabled: false,
     },
     {
-      value: "imgDiv-orange",
+      value: "orange",
       label: "orange",
       isDisabled: false,
     },
@@ -51,7 +87,7 @@ const Players = () => {
     newColorArray[pos] = { ...newColorArray[pos], isDisabled: isDisabled };
 
     //Find the pos of the previous color to enable is selection again
-    if (preColor !== "imgDiv-default") {
+    if (preColor !== "grey") {
       let previousPos = newColorArray.findIndex((element) => {
         return element.value === preColor;
       });
@@ -66,21 +102,30 @@ const Players = () => {
 
   return (
     <div>
-      <section className="cards">
+      <Grid container spacing={10}>
         {players.map((player) => (
-          <Player
+          <Grid
             key={player.id}
-            player={player}
-            colors={getColor}
-            onChildClick={changeColor}
-          ></Player>
+            item
+            sm={6}
+          >
+            <motion.div
+            initial={{scale: 2}} 
+           animate={{ scale: 1 }}
+           transition={{ duration: 1.5 }}>
+            <Player
+              key={player.id}
+              player={player}
+              colors={getColor}
+              onChildClick={changeColor}
+            ></Player>
+            </motion.div>
+          </Grid>
         ))}
-      </section>
+      </Grid>
       <div className="center">
-        <Link to="/">
-          <button type="button" className="btn btn-outline-success btn-lg mt-5">
-            Go To Game Lobby
-          </button>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <StyleButton />
         </Link>
       </div>
     </div>
