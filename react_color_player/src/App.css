@@ -8,8 +8,8 @@ html,
 body {
   height: 100vh;
   color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  background: url('img/bg.jpg') no-repeat center center/cover;
+  /*background: url('img/bg.jpg') no-repeat center center/cover;*/
+  overflow: hidden;
 }
 
 .container {
@@ -24,6 +24,8 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
 
 
 

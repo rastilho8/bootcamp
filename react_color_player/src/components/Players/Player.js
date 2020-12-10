@@ -32,15 +32,16 @@ const customStyles = {
 };
 
 function StyleCard({ player, colors, handleChange }) {
+
   const classes = styleCard({ player });
   return (
-    <Paper className={classes.root} elevation={3}>
-      <Container style={{ width: "70%" }}>
+    <Paper className={classes.root} >
+      <Container style={{ width: "70%"}}>
         <Typography
           variant="h4"
           style={{
             paddingBottom: "15px",
-            color: player.color != "grey" ? "white" : "black",
+            color: player.color !== "grey" ? "white" : "black",
           }}
         >
           {player.name}
