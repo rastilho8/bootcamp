@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import SaveIcon from "@material-ui/icons/Save";
 import ParticleAnimation from "react-particle-animation";
 import useFirestore from "../Firebase/firebaseStore";
+import { auth } from "../Firebase/firebase_conf";
 
 const useStyle = makeStyles({
   root: {
@@ -30,7 +31,7 @@ const useStyle = makeStyles({
   },
 });
 
-function StyleButtonHome({ setShowModal, setReset }) {
+function StyleButtonHome({ setShowModal }) {
   const classes = useStyle();
   return (
     <Button
@@ -39,11 +40,10 @@ function StyleButtonHome({ setShowModal, setReset }) {
       size="large"
       className={classes.root}
       onClick={() => {
-        setReset(true);
         setShowModal(true);
       }}
     >
-      Go To Game Lobby
+      Logout
     </Button>
   );
 }
@@ -65,10 +65,13 @@ function StyleButtonSave({ setShowModal }) {
   );
 }
 
-const Players = ({ setShowModal, setReset }) => {
-  const { docs } = useFirestore("players");
+const Players = ({ setShowModalSave, setShowModalLogout }) => {
+  const [test, setTest] = useContext(PlayersContext);
 
-  const [players, setPlayers] = useContext(PlayersContext);
+  const { currentLobby, players, setPlayers } = useFirestore(
+    auth.currentUser.uid
+  );
+
 
   const [getColor, setColor] = useState([
     {
@@ -99,36 +102,35 @@ const Players = ({ setShowModal, setReset }) => {
   ]);
 
   useEffect(() => {
-    let newArray = [...players];
-    let newColorArray = [...getColor];
-    docs.map((doc) => {
-      newArray[doc.id - 1] = {
-        ...newArray[doc.id - 1],
-        id: doc.id,
-        color: doc.color,
-        name: doc.name,
-      };
-
-      setPlayers(newArray);
+    players.map((player) => {
+      let newColorArray = [...getColor];
 
       let pos = newColorArray.findIndex((element) => {
-        return element.value === doc.color;
+        return element.value === player.color;
       });
 
       newColorArray[pos] = { ...newColorArray[pos], isDisabled: true };
+
       setColor(newColorArray);
+      
     });
-  }, [docs]);
+      setTest(players);
+      
+    return;
+  }, [players]);
 
   function changeColor(id, color, preColor, isDisabled) {
     let newArray = [...players];
 
-    newArray[id - 1] = { ...newArray[id - 1], color: color };
+    let posi = newArray.findIndex((element) => {
+      return element.id === id;
+    });
+
+    newArray[posi] = { ...newArray[posi], color: color };
     setPlayers(newArray);
 
     let newColorArray = [...getColor];
 
-    //Find the pos of the new color to display
     let pos = newColorArray.findIndex((element) => {
       return element.value === color;
     });
@@ -177,6 +179,7 @@ const Players = ({ setShowModal, setReset }) => {
                   key={player.id}
                   player={player}
                   colors={getColor}
+                  currentId={auth.currentUser.uid}
                   onChildClick={changeColor}
                 ></Player>
               </motion.div>
@@ -195,10 +198,9 @@ const Players = ({ setShowModal, setReset }) => {
               animate={{ scale: 1 }}
               transition={{ delay: 1.5 }}
             >
-             
-                <StyleButtonHome setReset={setReset} setShowModal={setShowModal} />
-             
-              <StyleButtonSave setShowModal={setShowModal} />
+              <StyleButtonHome setShowModal={setShowModalLogout} />
+
+              <StyleButtonSave setShowModal={setShowModalSave} />
             </motion.div>
           </Container>
         </div>

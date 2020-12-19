@@ -1,25 +1,28 @@
 import {useState, useEffect} from 'react';
 import { projectFirestore } from './firebase_conf';
 
-const useFirestore = (collection) => {
-  const [docs, setDocs] = useState([]);
-
+const useFirestore = (userId) => {
+  const [currentLobby, setCurrentLobby] = useState([]);
+  const [players, setPlayers] = useState([]);
   useEffect(() => {
-    const unsub = projectFirestore.collection(collection)
-      .onSnapshot(snap => {
-        let documents = [];
-        snap.forEach(doc => {
-          documents.push({...doc.data(), id: doc.id});
-        });
-        setDocs(documents);
-      });
 
-    return () => unsub();
-    // this is a cleanup function that react will run when
-    // a component using the hook unmounts
-  }, [collection]);
+      let id = "" + userId + ".id";
+        projectFirestore
+        .collection("lobby")
+        .where(id, "==", userId).get().then(function(querySnapshot){
+          querySnapshot.forEach(function(doc){
+            setCurrentLobby(doc.id);
+            setPlayers(Object.values(doc.data()));
+          })
+        }).catch(function(error){
+          console.log(error);
+        })
+      
+      return;
 
-  return { docs };
+  }, []);
+
+  return { currentLobby, players, setPlayers };
 }
 
 export default useFirestore;

@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
-import "./saveStyle.css";
+import "./logoutStyle.css";
 import CheckCircleOutlineOutlinedIcon from "@material-ui/icons/CheckCircleOutlineOutlined";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import { projectFirestore, auth } from "../Firebase/firebase_conf";
 import { PlayersContext } from "../../Context/PlayersContext";
+import logout from "../Firebase/firebaseLogout";
+import { useHistory } from "react-router-dom";
 import useFirestore from "../Firebase/firebaseStore";
 
 const backdrop = {
@@ -40,24 +42,30 @@ const styleCard = makeStyles({
   },
 });
 
-const savePlayers = ({ currentLobby, play, setShowModal }) => {
-
-  let pos = play.findIndex((element) => {
-    return element.id === auth.currentUser.uid;
-  });
-
-  var updatePlayer = {};
-  updatePlayer[auth.currentUser.uid] = play[pos];
-  projectFirestore.collection("lobby").doc(currentLobby).update(updatePlayer);
-  
+function changeState(
+  { players, setShowModal, history, currentLobby },
+  boolValue
+) {
   setShowModal(false);
-};
 
-const Save = ({ showModal, setShowModal }) => {
+  if (boolValue === true) {
+      
+      players.map(async player => {
+        let updatePlayer = {};
+        updatePlayer[player.id] = {...player, color: "grey"};
+        await projectFirestore.collection("lobby").doc(currentLobby).update(updatePlayer);
+      })
+
+    
+  }
+  logout(history);
+}
+
+const Logout = ({ showModal, setShowModal }) => {
+  const [players] = useContext(PlayersContext);
   const { currentLobby } = useFirestore(auth.currentUser.uid);
-  const [play] = useContext(PlayersContext);
-  
   const classes = styleCard();
+  const history = useHistory();
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -75,9 +83,8 @@ const Save = ({ showModal, setShowModal }) => {
           >
             <Paper className={classes.root} elevation={3}>
               <h2 style={{ marginBottom: "30px" }}>
-                Do you want to save the game?
+                Do you want to reset the game?
               </h2>
-
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <div style={{ marginRight: "10px" }}>
                   <Button
@@ -86,9 +93,12 @@ const Save = ({ showModal, setShowModal }) => {
                     color={"primary"}
                     size="large"
                     startIcon={<CheckCircleOutlineOutlinedIcon />}
-                    onClick={() => {
-                      savePlayers({ currentLobby, play, setShowModal });
-                    }}
+                    onClick={() =>
+                      changeState(
+                        { players, setShowModal, currentLobby, history },
+                        true
+                      )
+                    }
                   >
                     YES
                   </Button>
@@ -100,7 +110,7 @@ const Save = ({ showModal, setShowModal }) => {
                     size="large"
                     startIcon={<NotInterestedIcon />}
                     onClick={() => {
-                      setShowModal(false);
+                      changeState({ players, setShowModal, history }, false);
                     }}
                   >
                     NO
@@ -115,4 +125,4 @@ const Save = ({ showModal, setShowModal }) => {
   );
 };
 
-export default Save;
+export default Logout;

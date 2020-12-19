@@ -31,12 +31,11 @@ const customStyles = {
   }),
 };
 
-function StyleCard({ player, colors, handleChange }) {
-
+function StyleCard({ player, colors, handleChange, currentId }) {
   const classes = styleCard({ player });
   return (
-    <Paper className={classes.root} >
-      <Container style={{ width: "70%"}}>
+    <Paper className={classes.root}>
+      <Container style={{ width: "70%" }}>
         <Typography
           variant="h4"
           style={{
@@ -46,26 +45,33 @@ function StyleCard({ player, colors, handleChange }) {
         >
           {player.name}
         </Typography>
-        <Select
-          styles={customStyles}
-          menuPortalTarget={document.body}
-          value={colors.find((obj) => obj.value === colors)}
-          options={colors}
-          onChange={handleChange}
-          isOptionDisabled={(option) => option.isDisabled === true}
-        />
+        {player.id === currentId ? (
+          <Select
+            styles={customStyles}
+            menuPortalTarget={document.body}
+            value={colors.find((obj) => obj.value === colors)}
+            options={colors}
+            onChange={handleChange}
+            isOptionDisabled={(option) => option.isDisabled === true}
+          />
+        ) : null}
       </Container>
     </Paper>
   );
 }
 
-const Player = ({ player, colors, onChildClick }) => {
+const Player = ({ player, colors, onChildClick, currentId }) => {
   const handleChange = (e) => {
     onChildClick(player.id, e.value, player.color, true);
   };
 
   return (
-    <StyleCard player={player} colors={colors} handleChange={handleChange} />
+    <StyleCard
+      player={player}
+      colors={colors}
+      handleChange={handleChange}
+      currentId={currentId}
+    />
   );
 };
 
