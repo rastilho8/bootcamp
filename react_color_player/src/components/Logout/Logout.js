@@ -46,18 +46,18 @@ function changeState(
   { players, setShowModal, history, currentLobby },
   boolValue
 ) {
-  setShowModal(false);
-
   if (boolValue === true) {
-      
-      players.map(async player => {
-        let updatePlayer = {};
-        updatePlayer[player.id] = {...player, color: "grey"};
-        await projectFirestore.collection("lobby").doc(currentLobby).update(updatePlayer);
-      })
-
-    
+    console.log("entreiiii");
+    players.map(async (player) => {
+      let updatePlayer = {};
+      updatePlayer[player.id] = { ...player, color: "grey" };
+      await projectFirestore
+        .collection("lobby")
+        .doc(currentLobby)
+        .update(updatePlayer);
+    });
   }
+  setShowModal(false);
   logout(history);
 }
 

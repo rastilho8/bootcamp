@@ -66,12 +66,11 @@ function StyleButtonSave({ setShowModal }) {
 }
 
 const Players = ({ setShowModalSave, setShowModalLogout }) => {
-  const [test, setTest] = useContext(PlayersContext);
-
   const { currentLobby, players, setPlayers } = useFirestore(
     auth.currentUser.uid
   );
 
+  const [test, setTest] = useContext(PlayersContext);
 
   const [getColor, setColor] = useState([
     {
@@ -102,9 +101,8 @@ const Players = ({ setShowModalSave, setShowModalLogout }) => {
   ]);
 
   useEffect(() => {
+    let newColorArray = [...getColor];
     players.map((player) => {
-      let newColorArray = [...getColor];
-
       let pos = newColorArray.findIndex((element) => {
         return element.value === player.color;
       });
@@ -112,11 +110,10 @@ const Players = ({ setShowModalSave, setShowModalLogout }) => {
       newColorArray[pos] = { ...newColorArray[pos], isDisabled: true };
 
       setColor(newColorArray);
-      
+
+      return;
     });
-      setTest(players);
-      
-    return;
+    setTest(players);
   }, [players]);
 
   function changeColor(id, color, preColor, isDisabled) {
