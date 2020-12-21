@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
+import Avatar from "@material-ui/core/Avatar";
 
 const styleCard = makeStyles({
   root: {
@@ -31,10 +32,17 @@ const customStyles = {
   }),
 };
 
-function StyleCard({ player, colors, handleChange, currentId }) {
+function StyleCard({ player, colors, handleChange, currentId, url }) {
   const classes = styleCard({ player });
   return (
     <Paper className={classes.root}>
+      {player.id === currentId ? (
+        <Avatar
+          alt={player.name}
+          src={"" + url}
+          style={{ width: "60px", height: "60px" }}
+        />
+      ) : null}
       <Container style={{ width: "70%" }}>
         <Typography
           variant="h4"
@@ -60,7 +68,7 @@ function StyleCard({ player, colors, handleChange, currentId }) {
   );
 }
 
-const Player = ({ player, colors, onChildClick, currentId }) => {
+const Player = ({ player, colors, onChildClick, currentId, url }) => {
   const handleChange = (e) => {
     onChildClick(player.id, e.value, player.color, true);
   };
@@ -71,6 +79,7 @@ const Player = ({ player, colors, onChildClick, currentId }) => {
       colors={colors}
       handleChange={handleChange}
       currentId={currentId}
+      url={url}
     />
   );
 };

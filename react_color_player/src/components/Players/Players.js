@@ -66,7 +66,7 @@ function StyleButtonSave({ setShowModal }) {
 }
 
 const Players = ({ setShowModalSave, setShowModalLogout }) => {
-  const { currentLobby, players, setPlayers } = useFirestore(
+  const { currentLobby, players, setPlayers, url } = useFirestore(
     auth.currentUser.uid
   );
 
@@ -176,6 +176,7 @@ const Players = ({ setShowModalSave, setShowModalLogout }) => {
                   key={player.id}
                   player={player}
                   colors={getColor}
+                  url={url}
                   currentId={auth.currentUser.uid}
                   onChildClick={changeColor}
                 ></Player>

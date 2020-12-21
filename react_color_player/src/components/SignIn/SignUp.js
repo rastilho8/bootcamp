@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -31,30 +31,57 @@ const styleCard = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    height: "350px",
+    height: "400px",
     backgroundColor: "white",
     borderRadius: "10px",
     color: "black",
   },
 });
 
-const addUser = ({ email, name, pass, setSignUp, setError }) => {
-  if (email !== "" && pass !== "") {
-     Register(email, name, pass, setError, setSignUp );
-     
+const addUser = ({ email, name, pass, setSignUp, setError, file, setFile }) => {
+  if (email !== "" && pass !== "" && file !== null && name !== "") {
+    Register(email, name, pass, setError, setSignUp, file, setFile);
   } else {
-    alert("please provide a valid user or password");
+    setError("Please fill all the fields");
   }
 };
 
 const SignUp = ({ showSignUp, setSignUp }) => {
   const classes = styleCard();
 
-
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(null);
+  const [colorButton, setColorButton] = useState("red");
+
+  const [file, setFile] = useState(null);
+  const types = ["image/png", "image/jpeg"];
+
+  const handleChange = (e) => {
+    let selected = e.target.files[0];
+
+    if (selected && types.includes(selected.type)) {
+      setFile(selected);
+      setError("");
+    } else {
+      setFile(null);
+      setError("Please select an image file (png or jpg)");
+    }
+  };
+
+  useEffect(() => {
+    if (file) {
+      setColorButton("green");
+    } else {
+      setColorButton("red");
+    }
+  }, [file]);
+
+  const closeChange = () => {
+    setSignUp(false);
+    setFile(null);
+  };
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -78,7 +105,7 @@ const SignUp = ({ showSignUp, setSignUp }) => {
                   top: "0",
                   color: "red",
                 }}
-                onClick={() => setSignUp(false)}
+                onClick={() => closeChange()}
               >
                 <CancelIcon />
               </IconButton>
@@ -113,6 +140,15 @@ const SignUp = ({ showSignUp, setSignUp }) => {
                     style={{ width: "100%", marginBottom: "10px" }}
                     onChange={(e) => setPass(e.target.value)}
                   />
+                  <Button
+                    style={{ backgroundColor: colorButton, color: "white" }}
+                    variant="contained"
+                    component="label"
+                    onChange={(e) => handleChange(e)}
+                  >
+                    Upload File
+                    <input type="file" hidden />
+                  </Button>
                 </form>
               </Container>
               <Container style={{ textAlign: "center", padding: "10px" }}>
@@ -125,7 +161,16 @@ const SignUp = ({ showSignUp, setSignUp }) => {
                     fontSize: "20px",
                   }}
                   onClick={() =>
-                    addUser({ email, name, pass, setSignUp, error, setError })
+                    addUser({
+                      email,
+                      name,
+                      pass,
+                      setSignUp,
+                      error,
+                      setError,
+                      file,
+                      setFile,
+                    })
                   }
                 >
                   Register
