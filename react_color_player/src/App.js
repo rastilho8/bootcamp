@@ -22,9 +22,9 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <SignUp showSignUp={showSignUp} setSignUp={setSignUp} />
+            <SignUp showSignUp={showSignUp} setSignUp={setSignUp}/>
             <Login showLogin={showLogin} setShowLogin={setShowLogin} />
-            <Home setShowLogin={setShowLogin} setSignUp={setSignUp} />
+            <Home setShowLogin={setShowLogin} setSignUp={setSignUp}  />
           </Route>
           <PlayerProvider>
             <Save showModal={showModalSave} setShowModal={setShowModalSave} />

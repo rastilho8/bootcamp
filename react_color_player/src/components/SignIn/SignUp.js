@@ -169,7 +169,7 @@ const SignUp = ({ showSignUp, setSignUp }) => {
                       error,
                       setError,
                       file,
-                      setFile,
+                      setFile
                     })
                   }
                 >

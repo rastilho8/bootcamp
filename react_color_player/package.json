@@ -13,6 +13,8 @@
     "@testing-library/user-event": "^12.2.2",
     "bootstrap": "^4.5.3",
     "firebase": "^8.1.2",
+    "firebase-admin": "^9.4.2",
+    "firebase-functions": "^3.13.0",
     "fontsource-roboto": "^3.0.3",
     "framer-motion": "^2.9.5",
     "react": "^17.0.1",

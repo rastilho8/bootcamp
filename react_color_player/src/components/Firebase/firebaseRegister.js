@@ -9,6 +9,7 @@ const Register = async (
   file,
   setFile
 ) => {
+
   try {
     const response = await auth.createUserWithEmailAndPassword(email, password);
     setSignUp(false);
@@ -22,6 +23,7 @@ const Register = async (
       documents.push(doc.id);
       return documents;
     });
+
 
     let count = 0;
     let key = response.user.uid;
